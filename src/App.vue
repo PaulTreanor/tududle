@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app">   	 
     <div id="page-container">
       <div id="content-wrap">
         <Header/>

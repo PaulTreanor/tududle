@@ -1,16 +1,44 @@
 <template>
     <div class="wrapper">
-        <div > hello</div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <Weekday />
+        <Weekday />
+        <Weekday v-bind:todos="todos" v-on:del-todo="deleteTodo"/>
+        <Weekday />
+        <Weekday />
     </div>
 </template>
 
 <script>
+import Weekday from './Weekday';
+
 export default {
-    name: "Body"
+    name: "Body",
+    components: {
+        Weekday
+    },
+  data() {
+    return {
+      todos: [
+        {
+          title: "Work on fancy todo list",
+          completed: false
+        },
+        {
+          title: "Play DnD with the dudes",
+          completed: true
+        },
+        {
+          title: "call doctor about covid test",
+          completed: false
+        }
+      ]
+    }
+  },
+  methods : {
+      deleteTodo(title) {
+          this.todos = this.todos.filter(todo => todo.title !== title);
+      }
+  }
 }
 </script>
 
