@@ -2,7 +2,7 @@
     <div class="wrapper">
         <Weekday />
         <Weekday />
-        <Weekday v-bind:todos="todos" v-on:del-todo="deleteTodo"/>
+        <Weekday v-bind:todos="todos" v-on:del-todo="deleteTodo" v-on:add-todo="addTodo"/>
         <Weekday />
         <Weekday />
     </div>
@@ -37,6 +37,9 @@ export default {
   methods : {
       deleteTodo(title) {
           this.todos = this.todos.filter(todo => todo.title !== title);
+      },
+      addTodo(newTodo) {
+        this.todos = [...this.todos, newTodo]
       }
   }
 }

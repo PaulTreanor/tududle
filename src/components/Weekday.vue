@@ -2,10 +2,8 @@
     <div>
         <h2 class="day">Friday</h2>
         <p class="date">September 18th, 2020</p>
-        <form action="" method="get">
-            <input type="text" name="todoItem" placeholder="Add todo item"/>
-            <input type="submit" style="display:none"/>
-        </form>
+        <AddTodo v-on:add-todo="addTodo"/>
+
         <!----where the item components will be added --->
         <div v-for="todo in todos " v-bind:key="todo.title"> 
           <TodoItem v-bind:todo='todo' v-on:del-todo="$emit('del-todo', todo.title)"/>
@@ -16,12 +14,20 @@
 
 <script>
 import TodoItem from './TodoItem';
+import AddTodo from './AddTodo';
 
 export default {
     name: 'Weekday',
     props: ["todos"],
     components: {
-        TodoItem
+        TodoItem,
+        AddTodo
+    },
+    methods: {
+      addTodo(newTodo) {
+        this.$emit('add-todo', newTodo);
+        console.log(124)
+      }
     }
 }
 </script>
@@ -53,18 +59,4 @@ export default {
 .btn:hover {
   background: #666;
 }
-
-form {
-	padding-top: 10px;
-	padding-bottom: 20px;
-	padding-left: 10px;
-}
-
-input[type=text] {
-  width: 95%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-
 </style>
