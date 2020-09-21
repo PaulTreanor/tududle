@@ -8,6 +8,7 @@
 <script>
 export default {
     name: 'AddTodo',
+    props: ['day'],
     data() {
       return {
         title: ''
@@ -21,7 +22,7 @@ export default {
           completed: false
         }
         //send to parent componenet 
-        this.$emit('add-todo', newTodo);
+        this.$emit('add-todo', newTodo, this.day);
       }
     }
 }

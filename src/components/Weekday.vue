@@ -2,11 +2,11 @@
     <div>
         <h2 class="day">Friday</h2>
         <p class="date">September 18th, 2020</p>
-        <AddTodo v-on:add-todo="addTodo"/>
+        <AddTodo v-on:add-todo="addTodo" v-bind:day="day"/>   <!------v-bind:day needs to be send so it can be emitted back up--->
 
         <!----where the item components will be added --->
-        <div v-for="todo in todos " v-bind:key="todo.title"> 
-          <TodoItem v-bind:todo='todo' v-on:del-todo="$emit('del-todo', todo.title)"/>
+        <div v-for="todo in todoList " v-bind:key="todo.title"> 
+          <TodoItem v-bind:todo='todo' v-on:del-todo="$emit('del-todo', todo.title, todos.day)"/>
         </div>
     </div>
 
@@ -18,15 +18,22 @@ import AddTodo from './AddTodo';
 
 export default {
     name: 'Weekday',
-    props: ["todos"],
+    props: ["todos"],  //todos is an item with a day and a list of todos
     components: {
         TodoItem,
         AddTodo
     },
+    data() {
+      return {
+        todoList: this.todos.todoList,
+        day: this.todos.day
+      }
+      
+    },
     methods: {
-      addTodo(newTodo) {
-        this.$emit('add-todo', newTodo);
-        console.log(124)
+      addTodo(newTodo, day) {
+        this.$emit('add-todo', newTodo, day);
+
       }
     }
 }
