@@ -1,5 +1,5 @@
 <template>
-    <div class="todo-item" v-bind:class="{'is_complete':todo.completed}">
+    <div class="todo-item" v-bind:class="{'is_complete':todo.completed,'greyedout':day==-1, 'redout':day==0}">
         <p v-on:click="markComplete">{{todo.title}}</p>
 
         <button @click="$emit('del-todo', todo.title)" class="del"><i class='bx bx-trash'></i></button>
@@ -9,7 +9,7 @@
 <script>
 export default {
     name: 'TodoItem',
-    props: ['todo'],
+    props: ['todo', 'day'],
     methods: {
         markComplete() {
             this.todo.completed = !this.todo.completed;
@@ -27,10 +27,7 @@ export default {
 	grid-template-columns: 4fr 1fr;
     cursor: pointer;
 }
-.is_complete {
-    text-decoration: line-through;
-    color: #999;
-}
+
 .del {
     background: #ff0000;
     color: #ffffff;
@@ -49,6 +46,15 @@ export default {
 	background-color: #ccc;
 	color: #000;
 }
+.greyedout {
+    color: #888 !important;
+}
 
-
+.redout {
+    color: red;
+}
+.is_complete {
+    text-decoration: line-through;
+    color: #999;
+}
 </style>

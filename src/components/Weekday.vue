@@ -6,7 +6,7 @@
 
         <!----where the item components will be added --->
         <div v-for="todo in todoList " v-bind:key="todo.title"> 
-          <TodoItem v-bind:todo='todo' v-on:del-todo="$emit('del-todo', todo.title, todos.day)"/>
+          <TodoItem v-bind:todo='todo' v-bind:day ='day' v-on:del-todo="$emit('del-todo', todo.title, todos.day)"/>
         </div>
     </div>
 
@@ -21,7 +21,7 @@ export default {
     name: 'Weekday',
     props: ["todos"],  //todos is an item with a day and a list of todos
     components: {
-        TodoItem,
+        TodoItem, 
         AddTodo,
         Day
     },
@@ -42,20 +42,7 @@ export default {
 </script>
 
 <style scoped>
-.day {
-	margin: auto;
-	text-align: center;
-	color: black;
-	font-family: 'Oswald', "Helvetica Neue", Helvetica, Arial sans-serif;
-	text-transform: uppercase;
-	}
 
-.date {
-	margin:auto;
-	text-align: center;
-	padding-bottom: 20px;
-	color: black;
-}
 /*---------submit button styling -----------*/
 .btn {
   display: inline-block;
