@@ -1,7 +1,8 @@
 <template>
     <div class="wrapper">
         <div v-for="todos in todoLists" v-bind:key="todos"> 
-          <Weekday v-bind:todos='todos' v-on:del-todo="deleteTodo" v-on:add-todo="addTodo"/>
+          <Weekday v-bind:todos='todos' v-on:del-todo="deleteTodo" v-on:add-todo="addTodo
+          "/>
         </div>
     </div>
 </template>
@@ -18,7 +19,7 @@ export default {
     return {
       todoLists: [
        {
-         day: "yesterday",
+         day: -1, //-1 means yesterday...
          todoList: [
            {
           title: "Work on fancy todo list",
@@ -27,7 +28,7 @@ export default {
          ]
        },
        {
-         day: "today",
+         day: 0, //0 means today
          todoList: [
            {
           title: "Work on fancy todo list",
@@ -40,7 +41,7 @@ export default {
          ]
        },
        {
-         day: "tomorrow",
+         day: 1, //1 means tomorrow..
          todoList: [
            {
           title: "Have some fun",
@@ -49,7 +50,7 @@ export default {
          ]
        },
        {
-         day: "dayAfterTomorrow",
+         day: 2, //day after tomorrow
          todoList: [
            {
           title: "Work on cool project",
@@ -58,7 +59,7 @@ export default {
          ]
        },
        {
-         day: "twoDaysFromNow",
+         day: 3, //2 days from now
          todoList: [
            {
           title: "Work on cool stuff",
@@ -110,4 +111,6 @@ export default {
 	border-left:	#CCC 1px solid;
 	border-right:	#CCC 1px solid;
 }
+
+
 </style>

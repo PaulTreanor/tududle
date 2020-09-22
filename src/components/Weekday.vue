@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h2 class="day">Friday</h2>
-        <p class="date">September 18th, 2020</p>
+        <Day v-bind:day="day"/>
+        
         <AddTodo v-on:add-todo="addTodo" v-bind:day="day"/>   <!------v-bind:day needs to be send so it can be emitted back up--->
 
         <!----where the item components will be added --->
@@ -15,13 +15,15 @@
 <script>
 import TodoItem from './TodoItem';
 import AddTodo from './AddTodo';
+import Day from './dates/Day';
 
 export default {
     name: 'Weekday',
     props: ["todos"],  //todos is an item with a day and a list of todos
     components: {
         TodoItem,
-        AddTodo
+        AddTodo,
+        Day
     },
     data() {
       return {
