@@ -1,24 +1,9 @@
-# tudu
+# Tutudle
 
-## Project setup
-```
-npm install
-```
+## Project Overview 
+A TeuxDeux organiser webapp I'm working on using Vue/Flask/PostreSQL. I wanted to make my own because it's cheaper and good practice. It's also nice to be able to have a personalised tool.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Current Progress
+Finished the UI with the ability to add/delete/cross-out todo items done. Now working on backend using Flask and PostgreSQL.
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![User interface September 2020](tudu.png "tudu")
