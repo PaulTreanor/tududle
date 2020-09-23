@@ -1,4 +1,4 @@
-# Tutudle
+# Tududle
 
 ## Project Overview 
 A TeuxDeux-copy/organiser webapp I'm working on using Vue/Flask/PostreSQL. I wanted to make my own because it's cheaper and good practice. It's also nice to be able to have a personalised tool.
