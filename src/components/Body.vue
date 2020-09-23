@@ -9,6 +9,8 @@
 
 <script>
 import Weekday from './Weekday';
+import axios from 'axios';
+
 
 export default {
     name: "Body",
@@ -18,55 +20,6 @@ export default {
   data() {
     return {
       todoLists: [
-       {
-         day: -1, //-1 means yesterday...
-         todoList: [
-           {
-          title: "Work on fancy todo list",
-          completed: false
-        }
-         ]
-       },
-       {
-         day: 0, //0 means today
-         todoList: [
-           {
-          title: "Work on fancy todo list",
-          completed: false
-        },
-        {
-          title: "call doctor about covid test",
-          completed: false
-        }
-         ]
-       },
-       {
-         day: 1, //1 means tomorrow..
-         todoList: [
-           {
-          title: "Have some fun",
-          completed: false
-        }
-         ]
-       },
-       {
-         day: 2, //day after tomorrow
-         todoList: [
-           {
-          title: "Work on cool project",
-          completed: false
-        }
-         ]
-       },
-       {
-         day: 3, //2 days from now
-         todoList: [
-           {
-          title: "Work on cool stuff",
-          completed: false
-        }
-         ]
-       }
       ]
     }
   },
@@ -95,6 +48,11 @@ export default {
           }   
         }
       }
+  },
+  created() {   //runs immediately on start of program
+    axios.get('http://127.0.0.1:5000/todo_lists')
+      .then(res => this.todoLists = res.data)
+      .catch(err => console.log(err))
   }
 }
 </script>
