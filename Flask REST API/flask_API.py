@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request 
+from flask import Flask, jsonify, request, json
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -62,15 +62,29 @@ def todoData():
     if request.method == "POST":
         
         ## take in post data
-        newTodo = request.get_json(silent=True)
-        print(newTodo)                  #print response so that can see what you're dealing with
-        ## add post data to the todo_list
+        res_data = request.get_json(silent=True)
 
+        #parse that data 
+        day = res_data['day']
+        data = res_data['newTodo']
+
+        ## add post data to the todo_list
+        addToToDo(data, day)
         ## return posted data 
-        return newTodo
+        return res_data['newTodo']
 
     else:
         return "hlelo"
         
+
+def addToToDo(newTodo, day):
+    global todo_lists
+    
+    for d in todo_lists:
+        if d['day'] == day:
+            d['todoList'].append('newTodo')
+    print(todo_lists)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
