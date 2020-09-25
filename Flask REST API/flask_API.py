@@ -60,14 +60,12 @@ def todoData():
         return jsonify(todo_lists)
 
     if request.method == "POST":
-        
         ## take in post data
         res_data = request.get_json(silent=True)
 
         #parse that data 
         day = res_data['day']
         data = res_data['newTodo']
-
         ## add post data to the todo_list
         addToToDo(data, day)
         ## return posted data 
@@ -77,13 +75,13 @@ def todoData():
         return "hlelo"
         
 
-def addToToDo(newTodo, day):
+def addToToDo(data, day):   #ads post data to global todo_list
     global todo_lists
-    
+
     for d in todo_lists:
         if d['day'] == day:
-            d['todoList'].append('newTodo')
-    print(todo_lists)
+            d['todoList'].append(data   )
+            print(d)
 
 
 if __name__ == '__main__':
