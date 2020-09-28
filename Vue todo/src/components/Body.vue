@@ -31,7 +31,11 @@ export default {
             //find the item with the right title, remove 1 of that item from the list
             for (var j = 0; j < this.todoLists[i].todoList.length; j++) {
               if (this.todoLists[i].todoList[j].title == title) {
-                this.todoLists[i].todoList.splice(j, 1);
+                //delete it w/flask
+                axios.delete('http://127.0.0.1:5000/todo_lists/' +day+ "/"+title)
+                  .then(this.todoLists[i].todoList.splice(j, 1))  //deletes it locally
+                  .catch(err => console.log(err)).bind(this)
+                
               }
             }
           }   
@@ -43,14 +47,12 @@ export default {
           //this is working to cycle through the days..
           if (this.todoLists[i].day == day) {
             //if the day is right add the item to the list
-            axios.post('http://127.0.0.1:5000/todo_lists', {   //we're gonna need to add day in here too so flask knows where to add it
+            axios.post('http://127.0.0.1:5000/todo_lists', {  
               newTodo,
               day
             })
               .then(res => this.todoLists[i].todoList.push(res.data))
               .catch(err => console.log(err)).bind(this)  
-            
-            
           }   
         }
       }

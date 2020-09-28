@@ -53,7 +53,15 @@ todo_lists = [
 
         ]
 
-@app.route('/todo_lists', methods =["GET", "POST"])
+@app.route('/todo_lists/<int:day>/<string:title>', methods =["DELETE"])
+def deleteTodo(day, title):
+    if request.method == "DELETE":
+        deleteFromTodo(day, title)
+        return "hello"
+    else:
+        return "hlelo"
+
+@app.route('/todo_lists', methods =["GET", "POST", "DELETE"])
 def todoData():
     global todo_lists
     if request.method == "GET":
@@ -62,7 +70,6 @@ def todoData():
     if request.method == "POST":
         ## take in post data
         res_data = request.get_json(silent=True)
-
         #parse that data 
         day = res_data['day']
         data = res_data['newTodo']
@@ -71,8 +78,7 @@ def todoData():
         ## return posted data 
         return res_data['newTodo']
 
-    else:
-        return "hlelo"
+    
         
 
 def addToToDo(data, day):   #ads post data to global todo_list
@@ -83,6 +89,17 @@ def addToToDo(data, day):   #ads post data to global todo_list
             d['todoList'].append(data   )
             print(d)
 
+def deleteFromTodo(day, title):
+    global todo_lists
+
+    for d in todo_lists:
+        if d['day'] == day:
+            print(d)
+            for item in d['todoList']:
+                if item["title"] == title:
+                    d['todoList'].remove(item)
+            print(d)
+            break
 
 if __name__ == '__main__':
     app.run(debug=True)
