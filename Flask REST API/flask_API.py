@@ -53,10 +53,13 @@ todo_lists = [
 
         ]
 
-@app.route('/todo_lists/<int:day>/<string:title>', methods =["DELETE"])
+@app.route('/todo_lists/<int:day>/<string:title>', methods =["DELETE", "PATCH"])
 def deleteTodo(day, title):
     if request.method == "DELETE":
         deleteFromTodo(day, title)
+        return "hello"
+    if request.method =="PATCH":
+        markComplete(day, title)
         return "hello"
     else:
         return "hlelo"
@@ -98,6 +101,20 @@ def deleteFromTodo(day, title):
             for item in d['todoList']:
                 if item["title"] == title:
                     d['todoList'].remove(item)
+            print(d)
+            break
+
+def markComplete(day, title):
+    global todo_lists
+
+    for d in todo_lists:
+        if d['day'] == day:
+            for item in d['todoList']:
+                if item["title"] == title:
+                    if item["completed"] == True:
+                        item["completed"] = False
+                    else:
+                        item["completed"] = True
             print(d)
             break
 

@@ -14,6 +14,7 @@ export default {
         markComplete() {
             this.todo.completed = !this.todo.completed;
             //emit flag to call a method to update flask
+            this.$emit('mark-completed', this.todo.title, this.day);
         }
     }
 }

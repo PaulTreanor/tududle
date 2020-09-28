@@ -1,8 +1,7 @@
 <template>
     <div class="wrapper">
         <div v-for="todos in todoLists" v-bind:key="todos"> 
-          <Weekday v-bind:todos='todos' v-on:del-todo="deleteTodo" v-on:add-todo="addTodo
-          "/>
+          <Weekday v-bind:todos='todos' v-on:del-todo="deleteTodo" v-on:add-todo="addTodo" v-on:mark-completed="markComplete"/>
         </div>
     </div>
 </template>
@@ -55,6 +54,10 @@ export default {
               .catch(err => console.log(err)).bind(this)  
           }   
         }
+      },
+      markComplete(title, day) {
+        axios.patch('http://127.0.0.1:5000/todo_lists/' +day+ "/"+title)
+                  .catch(err => console.log(err)).bind(this)
       }
   },
   created() {   //runs immediately on start of program

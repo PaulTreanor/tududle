@@ -6,7 +6,7 @@
 
         <!----where the item components will be added --->
         <div v-for="todo in todoList " v-bind:key="todo.title"> 
-          <TodoItem v-bind:todo='todo' v-bind:day ='day' v-on:del-todo="$emit('del-todo', todo.title, todos.day)"/>
+          <TodoItem v-bind:todo='todo' v-bind:day ='day' v-on:del-todo="$emit('del-todo', todo.title, todos.day)" v-on:mark-completed="$emit('mark-completed', todo.title, todos.day)"/>
         </div>
     </div>
 
